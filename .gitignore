@@ -1,0 +1,23 @@
+# Python virtual environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Scratch / temporary
+scratch/
+data/test_batch_input_predictions.csv
+
+# Vercel project metadata
+.vercel/

@@ -1,0 +1,384 @@
+{% extends "base.html" %}
+{% block title %}Kolkata Property Intelligence & Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- ── Editorial Hero Section ────────────────────────────────────────────── -->
+<section class="relative overflow-hidden bg-[#FAF9F6] pt-16 pb-24 px-4 sm:px-6 lg:px-8 border-b border-[#EAE3D7]">
+  <!-- Subtle architectural background grid -->
+  <div class="absolute inset-0 luxury-grid-bg opacity-40 pointer-events-none"></div>
+
+  <!-- Soft champagne ambient glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[320px] bg-gradient-to-tr from-[#D8C29A]/15 via-[#C5A46D]/10 to-transparent blur-3xl pointer-events-none rounded-full"></div>
+
+  <div class="relative max-w-5xl mx-auto text-center">
+    
+    <!-- Editorial Eyebrow Tag -->
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFFFFF] border border-[#EAE3D7] shadow-sm text-xs font-medium text-[#77736B] mb-8">
+      <span class="w-1.5 h-1.5 rounded-full bg-[#C5A46D]"></span>
+      <span class="tracking-wide uppercase text-[10px] text-[#A88750] font-semibold">Institutional Property Valuation</span>
+      <span class="text-[#EAE3D7]">•</span>
+      <span>Kolkata Metro Area</span>
+    </div>
+
+    <!-- Main Editorial Headline -->
+    <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal text-[#252525] tracking-tight leading-[1.12] mb-6">
+      Uncompromising Clarity in <br/>
+      <span class="italic font-serif font-light text-[#A88750] bg-gradient-to-r from-[#A88750] via-[#C5A46D] to-[#8C6D38] bg-clip-text text-transparent">
+        Real Estate Valuation
+      </span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="text-base sm:text-lg text-[#77736B] max-w-2xl mx-auto font-light leading-relaxed mb-10">
+      ESTATEIQ unifies 6,275 verified transactions with regularized machine learning to deliver objective price intelligence across Kolkata's premier residential sectors.
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="/predict"
+         class="btn-gold flex items-center gap-2.5 px-8 py-3.5 rounded-full text-sm tracking-wide shadow-gold-subtle">
+        <i data-lucide="calculator" class="w-4 h-4"></i>
+        <span>Launch Valuation Engine</span>
+      </a>
+      <a href="/analytics"
+         class="btn-secondary flex items-center gap-2.5 px-8 py-3.5 rounded-full text-sm tracking-wide">
+        <i data-lucide="bar-chart-2" class="w-4 h-4 text-[#A88750]"></i>
+        <span>Explore Market Analytics</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Key Portfolio Metrics (Elevated Cards) ────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    
+    <!-- Card 1: Verified Properties -->
+    <div class="luxury-card p-6 bg-[#FFFFFF]">
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-xs font-semibold uppercase tracking-wider text-[#77736B]">Market Portfolio</span>
+        <div class="w-9 h-9 rounded-xl bg-[#FAF6EE] border border-[#EAE3D7] flex items-center justify-center text-[#A88750]">
+          <i data-lucide="building-2" class="w-4 h-4"></i>
+        </div>
+      </div>
+      <div class="font-serif text-3xl font-semibold text-[#252525]">{{ stats.total_props }}</div>
+      <div class="text-xs text-[#77736B] mt-1.5 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        <span>Cleaned, deduplicated listings</span>
+      </div>
+    </div>
+
+    <!-- Card 2: Average Property Value -->
+    <div class="luxury-card p-6 bg-[#FFFFFF]">
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-xs font-semibold uppercase tracking-wider text-[#77736B]">Citywide Benchmark</span>
+        <div class="w-9 h-9 rounded-xl bg-[#FAF6EE] border border-[#EAE3D7] flex items-center justify-center text-[#A88750]">
+          <i data-lucide="coins" class="w-4 h-4"></i>
+        </div>
+      </div>
+      <div class="font-serif text-3xl font-semibold text-[#252525]">{{ stats.avg_price }}</div>
+      <div class="text-xs text-[#77736B] mt-1.5">
+        <span>Kolkata metro mean price</span>
+      </div>
+    </div>
+
+    <!-- Card 3: Micro-Markets -->
+    <div class="luxury-card p-6 bg-[#FFFFFF]">
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-xs font-semibold uppercase tracking-wider text-[#77736B]">Covered Sectors</span>
+        <div class="w-9 h-9 rounded-xl bg-[#FAF6EE] border border-[#EAE3D7] flex items-center justify-center text-[#A88750]">
+          <i data-lucide="compass" class="w-4 h-4"></i>
+        </div>
+      </div>
+      <div class="font-serif text-3xl font-semibold text-[#252525]">{{ stats.num_locations }}</div>
+      <div class="text-xs text-[#77736B] mt-1.5">
+        <span>Distinct geographic clusters</span>
+      </div>
+    </div>
+
+    <!-- Card 4: Model Accuracy Band -->
+    <div class="luxury-card p-6 bg-[#FFFFFF]">
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-xs font-semibold uppercase tracking-wider text-[#77736B]">Model Precision</span>
+        <div class="w-9 h-9 rounded-xl bg-[#FAF6EE] border border-[#EAE3D7] flex items-center justify-center text-[#A88750]">
+          <i data-lucide="target" class="w-4 h-4"></i>
+        </div>
+      </div>
+      <div class="font-serif text-3xl font-semibold text-[#A88750]">{{ stats.within_20pct }}</div>
+      <div class="text-xs text-[#77736B] mt-1.5">
+        <span>Within ±20% tolerance (test set)</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Price Spectrum Spectrum Bar ───────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+  <div class="luxury-card-static p-7 bg-[#FFFFFF]">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+      <div>
+        <h2 class="font-serif text-xl font-medium text-[#252525]">Kolkata Valuation Spectrum</h2>
+        <p class="text-xs text-[#77736B] mt-0.5">IQR Winsorized price limits applied to mitigate extreme non-representative outliers.</p>
+      </div>
+      <span class="self-start sm:self-auto px-3 py-1 rounded-full text-[11px] font-medium bg-[#F5F1E9] text-[#77736B] border border-[#EAE3D7]">
+        469 Extreme Outliers Capped
+      </span>
+    </div>
+
+    <!-- Visual Bar -->
+    <div class="flex items-center gap-4 text-xs font-medium text-[#77736B]">
+      <span class="text-[#252525] font-semibold tracking-tight">{{ stats.min_price }}</span>
+      <div class="flex-1 relative h-3 bg-[#F5F1E9] rounded-full overflow-hidden border border-[#EAE3D7]">
+        <!-- Gradient fill -->
+        <div class="absolute inset-y-0 left-0 bg-gradient-to-r from-[#D8C29A] via-[#C5A46D] to-[#A88750] rounded-full" style="width: 100%;"></div>
+        <!-- Average marker -->
+        <div class="absolute inset-y-0 w-0.5 bg-[#252525] shadow-sm" style="left: 32.5%;"></div>
+      </div>
+      <span class="text-[#252525] font-semibold tracking-tight">{{ stats.max_price }}</span>
+    </div>
+
+    <div class="flex justify-between items-center text-[11px] text-[#77736B] mt-3">
+      <span>Entry Sector Baseline</span>
+      <span class="flex items-center gap-1 font-medium text-[#A88750]">
+        <span class="inline-block w-2 h-0.5 bg-[#252525]"></span> Market Mean: {{ stats.avg_price }}
+      </span>
+      <span>Upper Ceiling (Capped)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Live Market Analytics Charts ─────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+    <!-- Chart 1: Price Distribution -->
+    <div class="luxury-card-static p-7 bg-[#FFFFFF]">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h3 class="font-serif text-lg font-medium text-[#252525]">Transaction Volume Distribution</h3>
+          <p class="text-xs text-[#77736B] mt-0.5">Frequency count across ₹5 Lakh pricing brackets</p>
+        </div>
+        <div class="p-2 rounded-lg bg-[#FAF6EE] text-[#A88750] border border-[#EAE3D7]">
+          <i data-lucide="bar-chart-2" class="w-4 h-4"></i>
+        </div>
+      </div>
+      <div class="h-64">
+        <canvas id="priceDistChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Chart 2: Price by Bedroom Configuration -->
+    <div class="luxury-card-static p-7 bg-[#FFFFFF]">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h3 class="font-serif text-lg font-medium text-[#252525]">Median Price by Bedroom (BHK)</h3>
+          <p class="text-xs text-[#77736B] mt-0.5">Typical transaction benchmark per configuration</p>
+        </div>
+        <div class="p-2 rounded-lg bg-[#FAF6EE] text-[#A88750] border border-[#EAE3D7]">
+          <i data-lucide="pie-chart" class="w-4 h-4"></i>
+        </div>
+      </div>
+      <div class="h-64">
+        <canvas id="bedroomChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Top Kolkata Micro-Markets ────────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+  <div class="luxury-card-static p-8 bg-[#FFFFFF]">
+    
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8 pb-4 border-b border-[#EAE3D7]">
+      <div>
+        <h2 class="font-serif text-xl font-medium text-[#252525]">Premier Micro-Markets by Value</h2>
+        <p class="text-xs text-[#77736B] mt-0.5">Localities with minimum 5 verified transactions ranked by average transaction value.</p>
+      </div>
+      <a href="/analytics" class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#A88750] hover:text-[#C5A46D] transition-colors">
+        <span>Full Market Intelligence</span>
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+
+    <!-- Locality Table -->
+    <div class="divide-y divide-[#EAE3D7]">
+      {% for loc in top_locations %}
+      <div class="py-3.5 flex items-center justify-between gap-4 hover:bg-[#FAF9F6] px-3 rounded-lg transition-colors">
+        <div class="flex items-center gap-3.5 min-w-0">
+          <span class="w-6 text-center text-xs font-serif font-semibold text-[#A88750]">{{ loop.index }}</span>
+          <div class="min-w-0">
+            <div class="text-sm font-medium text-[#252525] truncate">{{ loc.name }}</div>
+            <div class="text-[11px] text-[#77736B] flex items-center gap-1">
+              <i data-lucide="check-circle-2" class="w-3 h-3 text-[#C5A46D]"></i>
+              <span>{{ loc.count }} recorded properties</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-5">
+          <!-- Progress representation -->
+          <div class="w-28 sm:w-44 bg-[#F5F1E9] rounded-full h-1.5 overflow-hidden hidden sm:block border border-[#EAE3D7]/60">
+            {% set pct = [(loc.avg_price / 14800000 * 100)|int, 100]|min %}
+            <div class="h-full rounded-full bg-gradient-to-r from-[#D8C29A] to-[#A88750]" style="width: {{ pct }}%;"></div>
+          </div>
+
+          <div class="text-right">
+            <span class="font-serif text-base font-semibold text-[#252525]">
+              ₹{{ "%.1f"|format(loc.avg_price / 100000) }} L
+            </span>
+            <div class="text-[10px] text-[#77736B]">Avg. Recorded</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Editorial Valuation Invitation ────────────────────────────────────── -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-6">
+  <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#FFFFFF] via-[#FAF6EE] to-[#F5F1E9] border border-[#EAE3D7] p-8 sm:p-12 shadow-sm">
+    <div class="max-w-2xl">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#EAE3D7] text-[10px] font-semibold uppercase tracking-wider text-[#A88750] mb-4">
+        Interactive Machine Learning
+      </div>
+      <h2 class="font-serif text-2xl sm:text-3xl font-medium text-[#252525] mb-3 leading-snug">
+        Appraise Any Residential Asset with Mathematical Transparency
+      </h2>
+      <p class="text-xs sm:text-sm text-[#77736B] leading-relaxed mb-8">
+        Input exact square footage, BHK configurations, 35 curated amenities, and specific Kolkata micro-market coordinates to receive an instant statistical valuation with rigorous confidence bands.
+      </p>
+      <a href="/predict" class="btn-gold inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs font-medium tracking-wide">
+        <i data-lucide="sparkles" class="w-4 h-4"></i>
+        <span>Begin Property Appraisal</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<!-- Chart.js 4.4.0 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+// Luxury Chart.js Defaults in White + Champagne Gold
+Chart.defaults.color = '#77736B';
+Chart.defaults.font.family = 'Inter, sans-serif';
+Chart.defaults.font.size = 11;
+
+const gridLineColor = 'rgba(234, 227, 215, 0.7)';
+const tickLabelColor = '#77736B';
+
+// Price Distribution Chart
+fetch('/api/chart/price-dist')
+  .then(r => r.json())
+  .then(data => {
+    new Chart(document.getElementById('priceDistChart'), {
+      type: 'bar',
+      data: {
+        labels: data.labels,
+        datasets: [{
+          label: 'Properties in Bracket',
+          data: data.values,
+          backgroundColor: 'rgba(197, 164, 109, 0.65)',
+          hoverBackgroundColor: 'rgba(168, 135, 80, 0.9)',
+          borderColor: '#C5A46D',
+          borderWidth: 1,
+          borderRadius: 4,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#FFFFFF',
+            titleColor: '#252525',
+            bodyColor: '#77736B',
+            borderColor: '#EAE3D7',
+            borderWidth: 1,
+            padding: 10,
+            cornerRadius: 8,
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: tickLabelColor, maxTicksLimit: 7, maxRotation: 0 },
+            grid: { display: false }
+          },
+          y: {
+            ticks: { color: tickLabelColor },
+            grid: { color: gridLineColor }
+          }
+        }
+      }
+    });
+  });
+
+// BHK Configuration Chart
+fetch('/api/chart/bedroom-prices')
+  .then(r => r.json())
+  .then(data => {
+    new Chart(document.getElementById('bedroomChart'), {
+      type: 'bar',
+      data: {
+        labels: data.labels,
+        datasets: [{
+          label: 'Median Value (₹ Lakhs)',
+          data: data.values,
+          backgroundColor: [
+            'rgba(216, 194, 154, 0.7)',
+            'rgba(197, 164, 109, 0.75)',
+            'rgba(168, 135, 80, 0.8)',
+            'rgba(140, 109, 56, 0.85)',
+            'rgba(118, 91, 46, 0.9)',
+            'rgba(96, 74, 38, 0.95)'
+          ],
+          borderColor: '#C5A46D',
+          borderWidth: 1,
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#FFFFFF',
+            titleColor: '#252525',
+            bodyColor: '#77736B',
+            borderColor: '#EAE3D7',
+            borderWidth: 1,
+            padding: 10,
+            cornerRadius: 8,
+            callbacks: {
+              label: (ctx) => ` Median: ₹${ctx.raw} Lakhs`
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: tickLabelColor },
+            grid: { display: false }
+          },
+          y: {
+            ticks: {
+              color: tickLabelColor,
+              callback: v => '₹' + v + 'L'
+            },
+            grid: { color: gridLineColor }
+          }
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

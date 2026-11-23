@@ -1,0 +1,26 @@
+ESTATEIQ -- Model Evaluation Report (v2)
+==================================================
+Model       : Ridge
+Target      : LogPrice
+Features    : 42
+Test samples: 1255
+
+Log-Scale Metrics
+  R2   : 0.0713
+  MAE  : 0.4562
+  RMSE : 0.5470
+
+INR-Scale Metrics (after exponentiation)
+  MAE  : INR 2,662,157
+  RMSE : INR 3,616,638
+  R2   : 0.0308
+  MAPE : 48.74%
+
+Cross-Validation (5-fold, log scale)
+  Mean R2 : 0.0852
+  Std  R2 : 0.0116
+
+Accuracy (INR scale)
+  Within 10% : 12.4%
+  Within 20% : 25.4%
+  Within 30% : 37.1%

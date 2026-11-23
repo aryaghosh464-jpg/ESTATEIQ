@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block title %}Methodology & Model Architecture{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
+
+  <!-- Editorial Section Header -->
+  <div class="max-w-3xl">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#EAE3D7] text-[10px] font-semibold uppercase tracking-wider text-[#A88750] mb-3">
+      <i data-lucide="book-open" class="w-3 h-3 text-[#C5A46D]"></i>
+      <span>Research &amp; Methodology Specification</span>
+    </div>
+    <h1 class="font-serif text-3xl sm:text-5xl font-normal text-[#252525] tracking-tight">
+      The Mathematics of Property Intelligence
+    </h1>
+    <p class="text-sm text-[#77736B] font-light leading-relaxed mt-2">
+      An inside look into the data curation, algorithmic modeling, and empirical audit behind ESTATEIQ's Kolkata valuation platform.
+    </p>
+  </div>
+
+  <!-- ── Executive Architecture Pillars ───────────────────────────────────── -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+    <div class="luxury-card-static p-7 bg-[#FFFFFF]">
+      <div class="w-10 h-10 rounded-xl bg-[#FAF6EE] border border-[#EAE3D7] flex items-center justify-center text-[#A88750] mb-4">
+        <i data-lucide="database" class="w-5 h-5"></i>
+      </div>
+      <h3 class="font-serif text-lg font-medium text-[#252525] mb-2">Curated Corpus</h3>
+      <p class="text-xs text-[#77736B] leading-relaxed">
+        6,275 verified Kolkata residential property records systematically audited, deduplicated, and normalized across 40 continuous and categorical attributes.
+      </p>
+    </div>
+
+    <div class="luxury-card-static p-7 bg-[#FFFFFF]">
+      <div class="w-10 h-10 rounded-xl bg-[#FAF6EE] border border-[#EAE3D7] flex items-center justify-center text-[#A88750] mb-4">
+        <i data-lucide="shield-check" class="w-5 h-5"></i>
+      </div>
+      <h3 class="font-serif text-lg font-medium text-[#252525] mb-2">Audited Integrity</h3>
+      <p class="text-xs text-[#77736B] leading-relaxed">
+        Complete elimination of synthetic predictive leakage (such as target-derived luxury flags), establishing a defensible and honest predictive baseline.
+      </p>
+    </div>
+
+    <div class="luxury-card-static p-7 bg-[#FFFFFF]">
+      <div class="w-10 h-10 rounded-xl bg-[#FAF6EE] border border-[#EAE3D7] flex items-center justify-center text-[#A88750] mb-4">
+        <i data-lucide="cpu" class="w-5 h-5"></i>
+      </div>
+      <h3 class="font-serif text-lg font-medium text-[#252525] mb-2">L2 Regularization</h3>
+      <p class="text-xs text-[#77736B] leading-relaxed">
+        Ridge Regression fitted on Log-transformed price space, minimizing multi-collinearity across 35 resident amenities and 308 micro-market encodings.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ── Deep-Dive Content Sections ───────────────────────────────────────── -->
+  <section class="luxury-card-static bg-[#FFFFFF] p-8 sm:p-12 border border-[#EAE3D7] space-y-12">
+    
+    <!-- Chapter 1 -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4">
+        <span class="text-[10px] font-mono uppercase tracking-widest text-[#A88750]">Chapter 01</span>
+        <h2 class="font-serif text-xl sm:text-2xl font-medium text-[#252525] mt-1">Data Ingestion &amp; Outlier Winsorization</h2>
+      </div>
+      <div class="lg:col-span-8 text-xs sm:text-sm text-[#77736B] space-y-4 leading-relaxed">
+        <p>
+          Residential real estate data naturally suffers from positive skewness caused by trophy assets and penthouses. The raw Kolkata dataset exhibited a severe price skewness of <strong class="text-[#252525]">12.903</strong>.
+        </p>
+        <p>
+          Instead of deleting records—which discards market intelligence—ESTATEIQ implements an <strong class="text-[#252525]">Interquartile Range (IQR) Winsorization</strong> treatment, clipping prices and areas to upper thresholds (1.5 × IQR). Furthermore, logarithmic transformation (<code class="bg-[#FAF6EE] text-[#252525] px-1.5 py-0.5 rounded border border-[#EAE3D7]">Log(1 + Price)</code>) compressed the skewness down to <strong class="text-[#252525]">0.271</strong>, yielding an approximately normal Gaussian target distribution ideal for linear and regularized estimators.
+        </p>
+      </div>
+    </div>
+
+    <div class="h-px bg-[#EAE3D7]"></div>
+
+    <!-- Chapter 2 -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4">
+        <span class="text-[10px] font-mono uppercase tracking-widest text-[#A88750]">Chapter 02</span>
+        <h2 class="font-serif text-xl sm:text-2xl font-medium text-[#252525] mt-1">Feature Engineering &amp; Target Encoding</h2>
+      </div>
+      <div class="lg:col-span-8 text-xs sm:text-sm text-[#77736B] space-y-4 leading-relaxed">
+        <p>
+          Real estate price is predominantly a spatial phenomenon. To represent 308 individual localities without exploding model dimensionality via one-hot encoding, we engineered:
+        </p>
+        <ul class="list-disc list-inside space-y-1.5 pl-2 text-xs text-[#252525]">
+          <li><strong class="text-[#A88750]">Location Target Encoding:</strong> Encodes localities by their empirical historical mean price.</li>
+          <li><strong class="text-[#A88750]">Location Tiers:</strong> Categorized into Low, Mid, and High valuation bands.</li>
+          <li><strong class="text-[#A88750]">Bedroom Categorization:</strong> Grouped into Compact (≤2 BHK), Mid (3 BHK), and Large (≥4 BHK).</li>
+          <li><strong class="text-[#A88750]">Amenity Score:</strong> Computed as non-zero presence across 35 individual lifestyle amenities.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="h-px bg-[#EAE3D7]"></div>
+
+    <!-- Chapter 3 -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-4">
+        <span class="text-[10px] font-mono uppercase tracking-widest text-[#A88750]">Chapter 03</span>
+        <h2 class="font-serif text-xl sm:text-2xl font-medium text-[#252525] mt-1">The End-to-End Leakage Audit</h2>
+      </div>
+      <div class="lg:col-span-8 text-xs sm:text-sm text-[#77736B] space-y-4 leading-relaxed">
+        <p>
+          A cornerstone of our research integrity was the discovery and remediation of synthetic target leakage. In naive formulations, an engineered feature named <code class="bg-[#FAF6EE] text-[#252525] px-1.5 py-0.5 rounded border border-[#EAE3D7]">IsLuxury</code> had been created using the 70th percentile of property prices (correlation <strong class="text-[#252525]">r = 0.847</strong> with the target).
+        </p>
+        <div class="p-4 rounded-xl bg-[#FAF6EE] border border-[#EAE3D7] text-xs text-[#77736B] leading-relaxed">
+          <strong class="text-[#A88750] block mb-1">Empirical Honesty Over Artificial Benchmarks:</strong>
+          While keeping <code class="text-[#252525]">IsLuxury</code> yielded an apparent R² of 0.713, it was mathematically invalid because the model was predicting price using a feature derived from price itself. In our audited pipeline, this feature was completely removed. The honest baseline R² of 0.085 accurately reflects real-world portal limitations, where amenities carry virtually zero variance (99.1% rated 9).
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── Technical Specifications Grid ────────────────────────────────────── -->
+  <div class="luxury-card-static bg-[#FFFFFF] p-8 border border-[#EAE3D7]">
+    <h3 class="font-serif text-xl font-medium text-[#252525] mb-6">Technical Ecosystem</h3>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+      <div class="p-4 rounded-xl bg-[#FAF9F6] border border-[#EAE3D7]">
+        <div class="text-[#77736B]">Backend Engine</div>
+        <div class="font-semibold text-[#252525] mt-1">Python 3.11 / Flask</div>
+      </div>
+      <div class="p-4 rounded-xl bg-[#FAF9F6] border border-[#EAE3D7]">
+        <div class="text-[#77736B]">Machine Learning</div>
+        <div class="font-semibold text-[#252525] mt-1">Scikit-Learn (Ridge L2)</div>
+      </div>
+      <div class="p-4 rounded-xl bg-[#FAF9F6] border border-[#EAE3D7]">
+        <div class="text-[#77736B]">Design Architecture</div>
+        <div class="font-semibold text-[#252525] mt-1">White &amp; Champagne Gold</div>
+      </div>
+      <div class="p-4 rounded-xl bg-[#FAF9F6] border border-[#EAE3D7]">
+        <div class="text-[#77736B]">Visualizations</div>
+        <div class="font-semibold text-[#252525] mt-1">Chart.js &amp; Matplotlib</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer Action CTA ────────────────────────────────────────────────── -->
+  <div class="text-center py-6">
+    <a href="/predict" class="btn-gold inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-xs font-semibold tracking-wide">
+      <i data-lucide="calculator" class="w-4 h-4"></i>
+      <span>Test The Valuation Engine</span>
+    </a>
+  </div>
+
+</div>
+{% endblock %}

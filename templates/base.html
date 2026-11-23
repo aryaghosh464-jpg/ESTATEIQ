@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}ESTATEIQ{% endblock %} — Luxury Real Estate Intelligence</title>
+  
+  <!-- Premium Google Fonts: Playfair Display (Serif) + Inter (Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+          colors: {
+            ivory: {
+              DEFAULT: '#FAF9F6',
+              50: '#FFFFFF',
+              100: '#FAF9F6',
+              200: '#F5F1E9',
+              300: '#EAE3D7',
+            },
+            sand: {
+              DEFAULT: '#F5F1E9',
+              border: '#EAE3D7',
+            },
+            gold: {
+              light: '#D8C29A',
+              DEFAULT: '#C5A46D',
+              deep: '#A88750',
+              accent: '#8C6D38',
+            },
+            charcoal: {
+              DEFAULT: '#252525',
+              soft: '#383634',
+              muted: '#77736B',
+              faint: '#A39D94',
+            }
+          },
+          boxShadow: {
+            'luxury': '0 10px 30px -5px rgba(119, 115, 107, 0.06), 0 2px 8px -2px rgba(197, 164, 109, 0.04)',
+            'luxury-hover': '0 20px 40px -8px rgba(197, 164, 109, 0.16), 0 4px 12px -2px rgba(37, 37, 37, 0.03)',
+            'gold-subtle': '0 4px 20px -2px rgba(197, 164, 109, 0.28)',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom Luxury Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  {% block head %}{% endblock %}
+</head>
+<body class="bg-[#FAF9F6] text-[#252525] font-sans min-h-screen flex flex-col selection:bg-[#D8C29A]/40 selection:text-[#252525]">
+
+  <!-- ── Top Luxury Accent Bar ─────────────────────────────────────────────── -->
+  <div class="h-1 bg-gradient-to-r from-[#D8C29A] via-[#C5A46D] to-[#A88750]"></div>
+
+  <!-- ── Navigation Bar ───────────────────────────────────────────────────── -->
+  <nav class="sticky top-0 z-50 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-[#EAE3D7] transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- Logo & Emblem -->
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FAF6EE] to-[#F5F1E9] border border-[#EAE3D7] flex items-center justify-center shadow-sm group-hover:border-[#C5A46D] transition-colors duration-300">
+            <svg class="w-5 h-5 text-[#A88750] group-hover:scale-105 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-serif text-2xl font-bold tracking-tight text-[#252525]">
+              ESTATE<span class="text-[#C5A46D] font-serif font-light italic">IQ</span>
+            </span>
+            <span class="text-[9px] uppercase tracking-[0.22em] text-[#77736B] font-medium -mt-1">
+              Kolkata Private Valuation
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center gap-1.5 bg-[#FFFFFF] p-1.5 rounded-full border border-[#EAE3D7] shadow-sm">
+          {% set nav_items = [
+            ('/', 'Dashboard', 'layout-dashboard'),
+            ('/predict', 'Valuation Engine', 'sparkles'),
+            ('/analytics', 'Market Intelligence', 'bar-chart-3'),
+            ('/about', 'Methodology', 'book-open')
+          ] %}
+          {% for href, label, icon in nav_items %}
+          <a href="{{ href }}"
+             class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium tracking-wide transition-all duration-200
+                    {% if request.path == href %}
+                      bg-[#F5F1E9] text-[#A88750] border border-[#EAE3D7] shadow-sm font-semibold
+                    {% else %}
+                      text-[#77736B] hover:text-[#252525] hover:bg-[#FAF9F6]
+                    {% endif %}">
+            <i data-lucide="{{ icon }}" class="w-3.5 h-3.5 {% if request.path == href %}text-[#C5A46D]{% else %}text-[#77736B]{% endif %}"></i>
+            <span>{{ label }}</span>
+          </a>
+          {% endfor %}
+        </div>
+
+        <!-- Right Side: Model Badge & CTA -->
+        <div class="hidden lg:flex items-center gap-3">
+          <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFFFFF] border border-[#EAE3D7] text-[11px] text-[#77736B] shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-[#C5A46D] animate-pulse"></span>
+            <span>Ridge ML v2.1</span>
+          </div>
+          <a href="/predict" class="btn-gold flex items-center gap-2 px-5 py-2.5 rounded-full text-xs tracking-wide">
+            <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+            <span>Instant Appraisal</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl text-[#77736B] hover:bg-[#F5F1E9] hover:text-[#252525] border border-transparent hover:border-[#EAE3D7] transition-colors" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="md:hidden hidden bg-[#FFFFFF] border-b border-[#EAE3D7] px-4 pt-3 pb-5 space-y-1.5 shadow-lg">
+      {% for href, label, icon in [('/', 'Dashboard', 'layout-dashboard'), ('/predict', 'Valuation Engine', 'sparkles'), ('/analytics', 'Market Intelligence', 'bar-chart-3'), ('/about', 'Methodology', 'book-open')] %}
+      <a href="{{ href }}"
+         class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors
+                {% if request.path == href %}
+                  bg-[#F5F1E9] text-[#A88750] font-semibold border border-[#EAE3D7]
+                {% else %}
+                  text-[#77736B] hover:bg-[#FAF9F6] hover:text-[#252525]
+                {% endif %}">
+        <i data-lucide="{{ icon }}" class="w-4 h-4 text-[#C5A46D]"></i>
+        <span>{{ label }}</span>
+      </a>
+      {% endfor %}
+      <div class="pt-2">
+        <a href="/predict" class="btn-gold flex items-center justify-center gap-2 w-full py-3 rounded-xl text-xs font-semibold">
+          <i data-lucide="calculator" class="w-4 h-4"></i>
+          <span>Instant Property Valuation</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Page Content ─────────────────────────────────────────────────────── -->
+  <main class="flex-1">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ── High-End Editorial Footer ────────────────────────────────────────── -->
+  <footer class="bg-[#FFFFFF] border-t border-[#EAE3D7] py-14 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-[#EAE3D7]">
+        <!-- Brand Column -->
+        <div class="md:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-[#FAF6EE] border border-[#EAE3D7] flex items-center justify-center">
+              <svg class="w-4 h-4 text-[#A88750]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <span class="font-serif text-xl font-bold tracking-tight text-[#252525]">
+              ESTATE<span class="text-[#C5A46D] italic">IQ</span>
+            </span>
+          </div>
+          <p class="text-xs text-[#77736B] leading-relaxed max-w-md">
+            ESTATEIQ brings institutional-grade machine learning and price transparency to Kolkata's residential property landscape. Trained on 6,275 verified properties across 308 distinct micro-markets.
+          </p>
+          <div class="flex items-center gap-2 text-[11px] text-[#A88750] font-medium">
+            <i data-lucide="shield-check" class="w-4 h-4 text-[#C5A46D]"></i>
+            <span>Leakage-Free Verified Predictive Pipeline</span>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="space-y-3">
+          <div class="text-xs font-semibold uppercase tracking-wider text-[#252525]">Platform</div>
+          <ul class="space-y-2 text-xs text-[#77736B]">
+            <li><a href="/" class="hover:text-[#A88750] transition-colors">Market Overview</a></li>
+            <li><a href="/predict" class="hover:text-[#A88750] transition-colors">Valuation Engine</a></li>
+            <li><a href="/analytics" class="hover:text-[#A88750] transition-colors">Statistical Intelligence</a></li>
+            <li><a href="/about" class="hover:text-[#A88750] transition-colors">Model Transparency</a></li>
+          </ul>
+        </div>
+
+        <!-- Technical Metadata -->
+        <div class="space-y-3">
+          <div class="text-xs font-semibold uppercase tracking-wider text-[#252525]">Architecture</div>
+          <ul class="space-y-2 text-xs text-[#77736B]">
+            <li class="flex items-center gap-1.5"><i data-lucide="cpu" class="w-3.5 h-3.5 text-[#C5A46D]"></i> Ridge Regularization (L2)</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="database" class="w-3.5 h-3.5 text-[#C5A46D]"></i> 42 Engineered Features</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-[#C5A46D]"></i> 308 Kolkata Localities</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="percent" class="w-3.5 h-3.5 text-[#C5A46D]"></i> LogPrice Transformation</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright & Disclaimer -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#77736B]">
+        <p>© 2026 ESTATEIQ Analytics. All rights reserved. Built with White &amp; Champagne Gold Design System.</p>
+        <p class="text-[11px] text-[#A39D94] text-center sm:text-right">
+          Estimates provided for research &amp; analytical guidance. Not an official financial appraisal.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  </script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

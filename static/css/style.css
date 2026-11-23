@@ -1,0 +1,211 @@
+/* ==========================================================================
+   ESTATEIQ — LUXURY WHITE & CHAMPAGNE GOLD DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+  /* Core Color Palette */
+  --bg-main: #FAF9F6;           /* Ivory White */
+  --bg-surface: #FFFFFF;        /* Pure White */
+  --bg-secondary: #F5F1E9;      /* Warm Linen / Sand */
+  --bg-accent: #FAF6EE;         /* Soft Champagne Wash */
+
+  /* Gold Palette */
+  --gold-primary: #C5A46D;      /* Refined Champagne Gold */
+  --gold-light: #D8C29A;        /* Luminous Champagne */
+  --gold-deep: #A88750;         /* Deep Metallic Bronze-Gold */
+  --gold-subtle: rgba(197, 164, 109, 0.12);
+  --gold-glow: rgba(197, 164, 109, 0.25);
+
+  /* Typography */
+  --text-primary: #252525;      /* Deep Rich Charcoal */
+  --text-secondary: #77736B;    /* Warm Muted Taupe */
+  --text-muted: #A39D94;        /* Soft Warm Grey */
+
+  /* Structural Elements */
+  --border-warm: #EAE3D7;       /* Thin Warm Sand Border */
+  --border-focus: #C5A46D;      /* Champagne Accent Focus */
+
+  /* Elevation & Shadows */
+  --shadow-subtle: 0 4px 20px -2px rgba(119, 115, 107, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  --shadow-card: 0 10px 30px -5px rgba(197, 164, 109, 0.08), 0 2px 8px -2px rgba(37, 37, 37, 0.03);
+  --shadow-card-hover: 0 20px 40px -8px rgba(197, 164, 109, 0.16), 0 4px 12px -2px rgba(37, 37, 37, 0.04);
+  --shadow-gold-button: 0 4px 18px 0 rgba(197, 164, 109, 0.32);
+}
+
+/* Base Body Styling */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Enhancements */
+.font-serif-luxury {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: -0.015em;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #C5A46D 0%, #A88750 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-shimmer {
+  background: linear-gradient(90deg, #A88750 0%, #C5A46D 50%, #A88750 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+/* Luxury Card System */
+.luxury-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-warm);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-subtle);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+  border-color: rgba(197, 164, 109, 0.45);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.luxury-card-static {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-warm);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+/* Luxury Primary Button */
+.btn-gold {
+  background: linear-gradient(135deg, #C5A46D 0%, #A88750 100%);
+  color: #FFFFFF;
+  font-weight: 500;
+  box-shadow: var(--shadow-gold-button);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-gold:hover::before {
+  left: 100%;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #D8C29A 0%, #C5A46D 100%);
+  box-shadow: 0 6px 24px 0 rgba(197, 164, 109, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+/* Luxury Secondary Button */
+.btn-secondary {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-warm);
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--gold-light);
+  color: var(--gold-deep);
+}
+
+/* Luxury Input Fields */
+.input-luxury {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-warm);
+  color: var(--text-primary);
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.input-luxury:focus {
+  outline: none;
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 3px rgba(197, 164, 109, 0.15);
+  background-color: #FFFFFF;
+}
+
+.input-luxury::placeholder {
+  color: var(--text-muted);
+}
+
+/* Badge Styles */
+.badge-gold {
+  background-color: rgba(197, 164, 109, 0.12);
+  border: 1px solid rgba(197, 164, 109, 0.3);
+  color: #8C6D38;
+}
+
+.badge-warm {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-warm);
+  color: var(--text-secondary);
+}
+
+/* Clean Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8C29A;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A46D;
+}
+
+/* Subtle architectural dot grid */
+.luxury-grid-bg {
+  background-image: radial-gradient(rgba(197, 164, 109, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Number Inputs */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 0.35;
+}
+
+/* Checkbox and Radio refinement */
+.custom-checkbox:checked {
+  background-color: var(--gold-primary);
+  border-color: var(--gold-primary);
+}

@@ -1,0 +1,10 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.git/
+.gitignore
+scratch/
+column_names.txt
+data/test_batch_input.csv
+data/test_batch_input_predictions.csv
